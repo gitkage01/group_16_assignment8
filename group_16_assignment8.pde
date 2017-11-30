@@ -6,10 +6,12 @@ RadioButton r1, r2;
 XML[] children3;
 XML[] children1;
 XML[] children2;
+XML[] children4;
 
 String[] titles;
-StringDict link;
+StringDict linkS;
 String[] descriptions;
+String[] urlList;
 String pubDate;
 
 PFont font;
@@ -28,6 +30,8 @@ Button prevButton;
 
 String url;
 String headline;
+
+boolean[] overBox;
 
 void setup() {
   size(800, 900);
@@ -106,14 +110,21 @@ void draw() {
   children1 = xml.getChildren("channel/item/title");
   children2 = xml.getChildren("channel/item/description");
   children3 = xml.getChildren("channel/pubDate");
+  children4 = xml.getChildren("channel/item/link");
   
   String pubDate = children3[0].getContent();
   
   titles = new String[children1.length];
+  overBox = new boolean[children1.length];
   descriptions = new String[children2.length];
+  urlList = new String[children4.length];
+  //int r = 0;
+  //println(titles[r]);
+  //r+=1;
   y1Vals = new float[children1.length];
   y2Vals = new float[children1.length];
-  link = new StringDict();  
+  linkS = new StringDict();
+
   
   for (int i = 0; i < children1.length; i++) {
     String title = children1[i].getContent();
@@ -128,7 +139,12 @@ void draw() {
   }
   
   for (int i = 0; i < descriptions.length; i++) {
-    link.set(titles[i], descriptions[i]);
+    linkS.set(titles[i], descriptions[i]);
+  }
+  
+  for (int i = 0; i < children4.length; i++) {
+    String urls = children4[i].getContent();
+    urlList[i] = urls;
   }
   
   float y1 = 100;
@@ -140,6 +156,12 @@ void draw() {
       text("-- " + titles[i], 20, y1, 750, y2);
       y1Vals[i] = y1;
       y2Vals[i] = y2;
+      if (mouseX > 20 && mouseX < 750 && mouseY > y1 && mouseY < y2) {
+        text(descriptions[i], 20, 720, 760, 100);
+        overBox[i] = true;
+      } else {
+        overBox[i] = false;
+      }
       y1 += 90;
       y2 += 90;
     }
@@ -151,6 +173,12 @@ void draw() {
       text("-- " + titles[i], 20, y1, 750, y2);
       y1Vals[i] = y1;
       y2Vals[i] = y2;
+      if (mouseX > 20 && mouseX < 750 && mouseY > y1 && mouseY < y2) {
+        text(descriptions[i], 20, 720, 760, 100);
+        overBox[i] = true;
+      } else {
+        overBox[i] = false;
+      }
       y1 += 90;
       y2 += 90;
     }
@@ -161,6 +189,12 @@ void draw() {
       text("-- " + titles[i], 20, y1, 750, y2);
       y1Vals[i] = y1;
       y2Vals[i] = y2;
+      if (mouseX > 20 && mouseX < 750 && mouseY > y1 && mouseY < y2) {
+        text(descriptions[i], 20, 720, 760, 100);
+        overBox[i] = true;
+      } else {
+        overBox[i] = false;
+      }
       y1 += 90;
       y2 += 90;
     }
@@ -195,4 +229,26 @@ void mousePressed() {
       screen -= 1;
     }
   }
+  
+  if (overBox[0]) {
+    link(urlList[0]);  
+  } else if (overBox[1]) {
+    link(urlList[1]);  
+  } else if (overBox[2]) {
+    link(urlList[2]);  
+  } else if (overBox[3]) {
+    link(urlList[3]);  
+  } else if (overBox[4]) {
+    link(urlList[4]);  
+  } else if (overBox[5]) {
+    link(urlList[5]);  
+  } else if (overBox[6]) {
+    link(urlList[6]);  
+  } else if (overBox[7]) {
+    link(urlList[7]);  
+  } else if (overBox[8]) {
+    link(urlList[8]);  
+  } else if (overBox[9]) {
+    link(urlList[9]);  
+  } 
 }
