@@ -1,0 +1,4 @@
+Jiajun did part2, Hex did part3 and Laural did part1 and helped part3.
+For part1, the hardest part is to use the imported library to draw bargraph.
+For part2, I had troubles to select the datas that I wanted. It also took some time to build those buttons.
+For part3, different pages caused some problem, and many buttons were used.
